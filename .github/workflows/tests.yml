@@ -1,22 +1,5 @@
 name: Unit tests
 
-# ---------------------------------------------------------------------------
-# Advanced feature (CA1 section 4): fewer, smarter test runs
-#
-# Problem : the basic "on: push" trigger runs the tests on EVERY push to EVERY
-#           branch, even for README edits, and runs them twice for one commit
-#           when a pull request is open (once for the push, once for the PR).
-# Solution: four changes, each removing a specific kind of wasted run.
-#   1. Branch + event filter  -> test at two stages only: when a pull request
-#                                is raised/updated, and when code lands on main.
-#   2. Path filter            -> run only if code, tests, config or this
-#                                workflow changed (docs/README edits are skipped).
-#   3. Concurrency group      -> a newer push cancels the older run that is
-#                                still in progress for the same branch/PR.
-#   4. Draft PR guard         -> unfinished (draft) pull requests are not tested
-#                                until marked "ready for review".
-# ---------------------------------------------------------------------------
-
 on:
   push:
     branches: [main]
