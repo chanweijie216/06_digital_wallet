@@ -16,7 +16,7 @@ on:
       - "requirements.txt"
       - "pytest.ini"
       - ".github/workflows/tests.yml"
-  workflow_dispatch:   # manual "Run workflow" button, handy for the demo
+  workflow_dispatch:   
 
 concurrency:
   group: tests-${{ github.workflow }}-${{ github.ref }}
@@ -30,7 +30,7 @@ jobs:
     name: pytest (Python 3.12)
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    # Skip draft pull requests; always run for push / manual runs.
+    
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
 
     steps:
